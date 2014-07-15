@@ -25,6 +25,15 @@ class Mysql():
         finally:
             self.disconnect()
 
+    def call_test_proc(self):
+        try:
+            con = self.reconnect()
+            cur = con.cursor()
+            return cur.callproc('test_proc')
+        finally:
+            self.disconnect()
+
+
     def rowcount(self):
         try:
             con = self.reconnect()
