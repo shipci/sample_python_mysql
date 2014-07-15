@@ -28,7 +28,9 @@ class Mysql():
         try:
             con = self.reconnect()
             cur = con.cursor()
-            return cur.callproc('test_proc')
+            cur.callproc('test_proc')
+            result = cur.fetchall()
+            return result
         finally:
             con.close()
 
