@@ -3,12 +3,10 @@ import sys
 
 
 class Mysql():
-    def __init__(self):
-        self.con = mdb.connect('127.0.0.1', 'shippable', '', 'test')
-
     def populate(self):
+        con = None
         try:
-            con = self.con
+            con = self.connect()
             cur = con.cursor()
             cur.execute("DROP TABLE IF EXISTS messages;")
             cur.execute("CREATE TABLE messages(message varchar(200));")
@@ -23,20 +21,21 @@ class Mysql():
             sys.exit(1)
 
         finally:
-            self.disconnect()
+            con.close()
 
     def call_test_proc(self):
+        con = None
         try:
             con = self.reconnect()
             cur = con.cursor()
             return cur.callproc('test_proc')
         finally:
-            self.disconnect()
-
+            con.close()
 
     def rowcount(self):
+        con = None
         try:
-            con = self.reconnect()
+            con = self.connect()
             cur = con.cursor()
             cur.execute("select * from messages;")
             cnt = cur.fetchall()
@@ -46,11 +45,11 @@ class Mysql():
             sys.exit(1)
 
         finally:
-            self.disconnect()
+            con.close()
 
-    def reconnect(self):
-        self.con = mdb.connect('127.0.0.1', 'shippable', '', 'test')
-        return self.con
+    def connect(self):
+        con = mdb.connect('127.0.0.1', 'shippable', '', 'test')
+        return con
 
     def disconnect(self):
         if self.con:
