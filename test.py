@@ -5,6 +5,7 @@ from sql import Mysql
 class test_db(unittest.TestCase):
 
     def testRowCount(self):
+        print("Running")
         mql = Mysql()
         mql.populate()
         count = 0

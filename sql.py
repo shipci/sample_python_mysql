@@ -50,12 +50,7 @@ class Mysql():
             con.close()
 
     def connect(self):
-        con = mdb.connect('127.0.0.1', 'shippable', '', 'test')
-        return con
-
-    def disconnect(self):
-        if self.con:
-            self.con.close()
+        return mdb.connect('127.0.0.1', 'shippable', '', 'test')
 
 
 if __name__ == '__main__':
