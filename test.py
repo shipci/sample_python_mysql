@@ -15,6 +15,11 @@ class test_db(unittest.TestCase):
         self.failIf(res[0][0] != 'test proc')
         print "Executed test {0} times".format(count)
         time.sleep(5)
+        count += 1
+        self.failIf(mql.rowcount() != 5)
+        res = mql.call_test_proc()
+        self.failIf(res[0][0] != 'test proc')
+        print "Executed test {0} times".format(count)
 
 
 def main():
