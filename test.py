@@ -1,4 +1,4 @@
-import unittest
+import unittest, time
 from sql import Mysql
 
 
@@ -14,6 +14,7 @@ class test_db(unittest.TestCase):
             res = mql.call_test_proc()
             self.failIf(res[0][0] != 'test proc')
             print "Executed test {0} times".format(count)
+            time.sleep(5)
 
 
 def main():
