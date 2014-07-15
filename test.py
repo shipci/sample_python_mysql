@@ -8,7 +8,9 @@ class test_db(unittest.TestCase):
         mql = Mysql()
         mql.populate()
         #self.failIf(mql.rowcount() != 5)
-        self.failIf(mql.call_test_proc()[0] != 'test proc')
+        res = mql.call_test_proc()
+        print res
+        self.failIf(res[0] != 'test proc')
 
 
 def main():
