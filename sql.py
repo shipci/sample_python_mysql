@@ -26,7 +26,7 @@ class Mysql():
     def call_test_proc(self):
         con = None
         try:
-            con = self.reconnect()
+            con = self.connect()
             cur = con.cursor()
             cur.callproc('test_proc')
             result = cur.fetchall()
