@@ -1,0 +1,6 @@
+DELIMITER //
+create procedure test_proc()
+begin
+  select 'test proc';
+end
+//
