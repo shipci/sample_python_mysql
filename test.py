@@ -10,7 +10,7 @@ class test_db(unittest.TestCase):
         #self.failIf(mql.rowcount() != 5)
         res = mql.call_test_proc()
         print res
-        self.failIf(res[0] != 'test proc')
+        self.failIf(res[0][0] != 'test proc')
 
 
 def main():
